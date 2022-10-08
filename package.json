@@ -1,0 +1,25 @@
+{
+  "name": "spa_mall",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwon-ga/spa_mall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwon-ga/spa_mall/issues"
+  },
+  "homepage": "https://github.com/kwon-ga/spa_mall#readme",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.5"
+  }
+}

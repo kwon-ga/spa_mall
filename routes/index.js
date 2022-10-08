@@ -4,10 +4,14 @@ const postroutes = require('./posts.js');
 const commentroutes = require('./comment.js');
 // const levelroutes = require('./level.js');
 
-// 개인 과제 라우터
-router.use('/', commentroutes);
-router.use('/', postroutes);
+const todorouter = require('./todos.js');
+const cookierouter = require('./cookie.js');
 
+// 개인 과제 라우터
+router.use('/', [commentroutes,postroutes,cookierouter]);
+
+//심화 라우터
+router.use('/api',todorouter);
 
 // // 마운트 경로가 없는 미들웨어, 항상 실행된다.
 // router.use((req, res, next) => {

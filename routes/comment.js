@@ -8,6 +8,7 @@ router.post('/comments/:_postId', async (req,res) => {
     const postId = req.params._postId ; 
     const {user,password,content} = req.body
     const result = await Comment.create({user,password,content,postId});
+    console.log(result);
     res.json({message:'댓글을 생성하였습니다.'})
 })
 

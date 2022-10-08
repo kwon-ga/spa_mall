@@ -9,6 +9,7 @@ const commentSchema = new mongoose.Schema({
     },
     password: {
         type: String
+
     },
     content:{
         type:String
