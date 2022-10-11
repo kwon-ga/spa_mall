@@ -5,6 +5,13 @@ const jwt = require('jsonwebtoken');
 router.use(cookieParser());
 const auth = require('../middlewares/auth_middleware.js');
 const {Comment} = require('../models');
+const Joi = require('joi');
+
+
+const commentSchema = Joi.object({
+    nickname: Joi.string().required()
+});
+
 
 /* 댓글 생성
 req : {"comment": "안녕하세요 댓글입니다."}
@@ -14,7 +21,7 @@ router.post('/comments/:postId',auth,async (req,res)=>{
 
     const postId = req.params.postId;
     const { userId,nickname } = res.locals.user;
-    const { comment } = req.body;
+    const { comment } = await commentSchema.validateAsync(req.body).catch(e=>res.status(400).send({"errorMessage": "댓글 내용을 입력해주세요"}));
     console.log(postId,userId,nickname,comment);
 
     try {
@@ -38,7 +45,8 @@ router.get('/comments/:postId',async (req,res)=>{
     const postId = req.params.postId;
     try {
         const data = await Comment.findAll({
-            where : {postId : postId}
+            where : {postId : postId},
+            order: [["createdAt", "desc"]]
         });
         res.status(200).send({data});
     } catch (error) {
@@ -52,7 +60,7 @@ req : {"comment": "수정된 댓글입니다."}
 res : {"message": "댓글을 수정하였습니다."}
 */
 router.put('/comments/:commetId',auth,async (req,res)=>{
-    const { comment } = req.body;
+    const { comment } = await commentSchema.validateAsync(req.body).catch(e=>res.status(400).send({"errorMessage": "댓글 내용을 입력해주세요"}));
     const commetId = req.params.commetId;
     const { userId,nickname } = res.locals.user;
     try {

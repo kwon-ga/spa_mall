@@ -33,7 +33,8 @@ router.get('/posts/like',auth, async (req,res)=>{
             where : {
                 [Op.or] : likeList,
                 userId:userId
-            }
+            },
+            order: [["like", "desc"]]
         })
         res.status(200).send({data});
     } catch (error) {
@@ -116,7 +117,9 @@ res :{ "data":[{ "postId": 2, "userId": 1,
 ...
 */
 router.get('/posts',async (req,res)=>{
-    const data = await Post.findAll({});
+    const data = await Post.findAll({
+        order: [["createdAt", "desc"]]
+    });
     res.status(200).send({data});
 })
 
