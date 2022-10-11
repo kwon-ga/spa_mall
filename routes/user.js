@@ -32,12 +32,12 @@ router.post('/signup', async (req,res)=>{
     
 
     // 토큰을 확인해서 이미 로그인 된 유저인지 확인
-    // if(!!req.cookies){
-    //     res.status(400).send({
-    //         errorMessage: "이미 로그인이 되어있습니다.",
-    //     });
-    //     return ;
-    // }
+    if(!!req.cookies){
+        res.status(400).send({
+            errorMessage: "이미 로그인이 되어있습니다.",
+        });
+        return ;
+    }
     
     
     // 패스워드 일치여부
@@ -85,12 +85,12 @@ router.post('/login',async (req,res)=>{
     const {nickname, password} = req.body;
     
     // 토큰을 확인해서 이미 로그인 된 유저인지 확인
-    // if(!!req.cookies){
-    //     res.status(400).send({
-    //         errorMessage: "이미 로그인이 되어있습니다.",
-    //     });
-    //     return ;
-    // }
+    if(!!req.cookies){
+        res.status(400).send({
+            errorMessage: "이미 로그인이 되어있습니다.",
+        });
+        return ;
+    }
 
 
     // 일치하는 유저 검색

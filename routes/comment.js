@@ -9,7 +9,7 @@ const Joi = require('joi');
 
 
 const commentSchema = Joi.object({
-    nickname: Joi.string().required()
+    comment: Joi.string().required()
 });
 
 
